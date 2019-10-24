@@ -1,0 +1,13 @@
+* {
+  box-sizing: border-box;
+  font-family: Montserrat;
+}
+
+.app {
+  min-width: 100vw;
+  min-height: 100vh;
+  color: white;
+  display: flex;
+  background-color: black;
+  justify-content: center;
+}
