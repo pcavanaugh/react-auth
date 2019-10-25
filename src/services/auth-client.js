@@ -2,7 +2,7 @@ import client from './api-client';
 
 const AUTH_TOKEN_KEY = 'ACCESS_TOKEN';
 
-const getAuthToken = () => {
+export const getAuthToken = () => {
   if (!window.localStorage) return null;
   const token = window.localStorage.getItem(AUTH_TOKEN_KEY);
   if (!token) return null;
@@ -38,4 +38,6 @@ export const login = ({ username, password }) => {
     });
 };
 
-export const logout = async () => {};
+export const logout = async () => {
+  window.localStorage.clear();
+};

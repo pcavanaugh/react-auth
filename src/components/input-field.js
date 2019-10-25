@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './join.module.css';
+import styles from '../pages/global.module.css';
 
 const InputField = ({
   label,

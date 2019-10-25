@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import useForm from 'react-hook-form';
+import InputField from '../components/input-field';
 import { useAuth } from '../context/auth-context';
-import styles from './login.module.css';
-import { Spinner } from './spinner';
+import styles from './global.module.css';
+import { Spinner } from '../components/spinner';
 
 const Login = () => {
   const { handleSubmit, register, errors } = useForm();
@@ -23,31 +24,23 @@ const Login = () => {
     <div className={ styles.flexContainer }>
       <div className={ styles.subHeader }>Sign in to your account.</div>
       <div className={ styles.form }>
-        <div className={ styles.formInput }>
-          <div>Email</div>
-          <input
-            placeholder="Enter email"
-            className={ styles.input }
-            name="username"
-            ref={ register({ required: 'Required.' }) }
-            type="email"
-          />
-          <div className="errorMessage">{ errors.email && errors.email.message }</div>
-        </div>
-        <div className={ styles.formInput }>
-          <div>Password</div>
-          <input
-            placeholder="Enter password"
-            className={ styles.input }
-            name="password"
-            ref={ register({ required: 'Required.' }) }
-            type="password"
-          />
-          <div className="errorMessage">
-            { errors.password ? errors.password.message : error }
-          </div>
-        </div>
+        <InputField
+          label="Email"
+          placeholder="Enter email"
+          name="username"
+          inputRef={ register({ required: 'Required' }) }
+          errorMessage={ errors.username && errors.username.message }
+        />
+        <InputField
+          type="password"
+          label="Password"
+          placeholder="Enter password"
+          name="password"
+          inputRef={ register({ required: 'Required' }) }
+          errorMessage={ errors.password && errors.password.message }
+        />
       </div>
+      <div>{ error }</div>
       <button
         className={ styles.button }
         onClick={ handleSubmit(onSubmit) }>

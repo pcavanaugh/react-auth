@@ -1,14 +1,22 @@
 import config from '../config'
+import { getAuthToken } from './auth-client';
 const baseUrl = config.apiUrl;
 
 const client = async (endpoint, { body, ...customConfig } = {}) => {
+  const headers = {
+    'content-type': 'application/json',
+    ...customConfig.headers
+  };
+
+  const token = getAuthToken();
+  if (token && token.accessToken) {
+    headers.authorization = `bearer ${token.accessToken}`;
+  }
+
   const config = {
     method: body ? 'POST' : 'GET',
     ...customConfig,
-    headers: {
-      'content-type': 'application/json',
-      ...customConfig.headers
-    }
+    headers
   }
 
   if (body) {

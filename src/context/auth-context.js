@@ -28,7 +28,7 @@ function AuthProvider(props) {
   if (!firstAttemptFinished) {
     if (isPending) {
       return (
-        <div className="prelogin-app">
+        <div className="app">
           <FullPageSpinner />
         </div>
       );
